@@ -1,1 +1,21 @@
+# Usa una imagen base de Ubuntu
+FROM ubuntu:22.04
+
+# Instala Node.js y Node-RED
+RUN apt-get update && apt-get install -y \
+    curl \
+    nodejs \
+    npm \
+    iputils-ping \
+    net-tools \
+    && npm install -g --unsafe-perm node-red \
+    && apt-get clean
+
+# Crea carpeta de trabajo
+WORKDIR /data
+
+EXPOSE 1880
+
+# Comando por defecto
+CMD ["node-red"]
 
